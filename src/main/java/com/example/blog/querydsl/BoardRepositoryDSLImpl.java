@@ -2,18 +2,12 @@ package com.example.blog.querydsl;
 
 import com.example.blog.dto.*;
 import com.example.blog.entity.*;
-import com.querydsl.core.Tuple;
-import com.querydsl.core.types.ExpressionUtils;
-import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.CaseBuilder;
-import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -29,9 +23,9 @@ public class BoardRepositoryDSLImpl implements BoardRepositoryDsl{
     private QBoardTextContentSub boardTextContentSub = QBoardTextContentSub.boardTextContentSub;
 
     @Override
-    public List<BoardDto> getBoardList(String hashTagName, Long pageNumber) {
+    public List<BoardListDto> getBoardList(String hashTagName, Long pageNumber) {
 
-        List<BoardDto> responseData = new ArrayList<>();
+        List<BoardListDto> responseData = new ArrayList<>();
         Long pageSize = 5L;
         Long offsetDate = (pageNumber * pageSize);
 
@@ -54,7 +48,7 @@ public class BoardRepositoryDSLImpl implements BoardRepositoryDsl{
 
         for (Board resultBoard: result) {
 
-            BoardDto responseDto = new BoardDto(
+            BoardListDto responseDto = new BoardListDto(
                     resultBoard.getBoardId()
                     , resultBoard.getBoardTitle()
             );

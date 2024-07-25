@@ -1,7 +1,6 @@
 package com.example.blog;
 
 import com.example.blog.dto.BoardContentDto;
-import com.example.blog.dto.BoardDto;
 import com.example.blog.dto.UserDto;
 import com.example.blog.entity.Board;
 import com.example.blog.entity.BoardAndHash;
@@ -62,9 +61,6 @@ class TestApplicationTests {
     void getBoardTest(){
 
         String a = null;
-
-        //List<BoardDto> result = boardRepositoryDsl.getBoardList("hash1");
-        //List<BoardDto> result1 = boardRepositoryDsl.getBoardList(a);
 
         //BoardContentDto contentResult = boardRepositoryDsl.getBoardContent(100L);
 

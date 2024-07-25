@@ -1,7 +1,7 @@
 package com.example.blog.service;
 
 import com.example.blog.dto.BoardContentDto;
-import com.example.blog.dto.BoardDto;
+import com.example.blog.dto.BoardListDto;
 import com.example.blog.entity.Board;
 import com.example.blog.entity.BoardAndHash;
 import com.example.blog.entity.BoardContent;
@@ -40,10 +40,10 @@ public class BoardService {
 
     private final Logger logger = LoggerFactory.getLogger(BoardService.class);
 
-    public List<BoardDto> getBoardList(String hashTagName, Long pageNumber) {
+    public List<BoardListDto> getBoardList(String hashTagName, Long pageNumber) {
 
         try {
-            List<BoardDto> result = boardRepositoryDsl.getBoardList(hashTagName, pageNumber);
+            List<BoardListDto> result = boardRepositoryDsl.getBoardList(hashTagName, pageNumber);
             return result;
 
         } catch (NullPointerException nullPointerException) {

@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class BoardDto {
+public class BoardListDto {
 
     private final Long board_id;
     private final String board_title;

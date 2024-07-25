@@ -1,7 +1,7 @@
 package com.example.blog.controller;
 
 import com.example.blog.dto.BoardContentDto;
-import com.example.blog.dto.BoardDto;
+import com.example.blog.dto.BoardListDto;
 import com.example.blog.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +18,7 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("/getBoardList")
-    public List<BoardDto> getBoardList(@RequestParam String hashTagName, @RequestParam Long pageNumber){
+    public List<BoardListDto> getBoardList(@RequestParam String hashTagName, @RequestParam Long pageNumber){
 
         return boardService.getBoardList(hashTagName, pageNumber);
     }
