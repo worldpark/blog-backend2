@@ -2,11 +2,16 @@ package com.example.blog.controller;
 
 import com.example.blog.dto.BoardContentDto;
 import com.example.blog.dto.BoardListDto;
+import com.example.blog.dto.CommentDto;
+import com.example.blog.dto.ResponseDto;
 import com.example.blog.service.BoardService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -44,14 +49,33 @@ public class BoardController {
     }
 
     @PutMapping("/updateBoard")
-    public Long updateBoard(@RequestBody HashMap<String, Object> param){
+    public void updateBoard(@RequestBody HashMap<String, Object> param){
         boardService.updateBoard(param);
-
-        return 1L;
     }
 
     @DeleteMapping("/boardDelete")
     public void boardDelete(@RequestParam Long boardId){
         boardService.boardDelete(boardId);
+    }
+
+    @GetMapping("/getComment")
+    public List<CommentDto> getComment(@RequestParam Long boardId){
+        return boardService.getComment(boardId);
+    }
+
+    @PostMapping("/insertComment")
+    public void insertComment(@RequestParam HashMap<String, Object> param, Principal principal, HttpServletRequest request){
+        //param.put("ip", request.getRemoteAddr());
+        boardService.insertComment(param, principal);
+    }
+
+    @DeleteMapping("/deleteComment")
+    public ResponseEntity<ResponseDto> deleteComment(@RequestParam HashMap<String, Object> param){
+        return boardService.deleteComment(param);
+    }
+
+    @PutMapping("/blindComment")
+    public ResponseEntity<ResponseDto> blindComment(@RequestParam HashMap<String, String> param){
+        return boardService.blindComment(param);
     }
 }

@@ -34,8 +34,8 @@ public class SecurityConfig {
         security
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/", "/login/**", "/check-session", "/getHashTagList", "/boardImage/**"
-                                , "/loginSuccess", "/error/**", "/anonymous/resource/**", "/board/getBoardList"
-                                , "/board/getBoardContent").permitAll()
+                                , "/loginSuccess", "/error/**", "/anonymous/resource/**", "/board/getBoardList", "/board/insertComment"
+                                , "/board/getComment", "/board/getBoardContent", "/board/deleteComment").permitAll()
                         .anyRequest().hasRole("ADMIN")
                 )
                 .authenticationProvider(customAuthenticationProvider())

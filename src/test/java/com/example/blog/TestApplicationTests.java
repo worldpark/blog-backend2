@@ -1,5 +1,6 @@
 package com.example.blog;
 
+import com.example.blog.config.AesUtil;
 import com.example.blog.dto.BoardContentDto;
 import com.example.blog.dto.UserDto;
 import com.example.blog.entity.Board;
@@ -36,6 +37,8 @@ class TestApplicationTests {
 
     @Autowired
     private BoardService boardService;
+
+    private AesUtil aesUtil = new AesUtil();
     
     @Test
     void contextLoads() {
@@ -50,9 +53,9 @@ class TestApplicationTests {
 
     @Test
     void jpaInsertUser(){
-        String pw = bCryptPasswordEncoder.encode("test22");
+        String pw = bCryptPasswordEncoder.encode("admin22");
 
-        User user = new User("testId3", pw, "USER");
+        User user = new User("adminId", pw, "ROLE_ADMIN");
 
         userRepository.save(user);
     }
@@ -73,6 +76,17 @@ class TestApplicationTests {
 
         boardRepository.save(board);
 
+    }
+
+    @Test
+    void AesTest(){
+        String testStr = "test";
+
+        String encodedStr = aesUtil.aesEncode(testStr);
+        String decodedStr = aesUtil.aesDecode(encodedStr);
+
+        System.out.println(encodedStr);
+        System.out.println(decodedStr);
     }
 
 }

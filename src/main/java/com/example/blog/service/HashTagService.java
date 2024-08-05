@@ -7,6 +7,7 @@ import com.example.blog.entity.HashTag;
 import com.example.blog.exception.CustomErrorCode;
 import com.example.blog.exception.CustomException;
 import com.example.blog.querydsl.BoardRepositoryDsl;
+import com.example.blog.querydsl.HashTagRepositoryDsl;
 import com.example.blog.repository.BoardAndHashRepository;
 import com.example.blog.repository.HashTagRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,18 +29,24 @@ public class HashTagService {
 
     private final HashTagRepository hashTagRepository;
     private final BoardAndHashRepository boardAndHashRepository;
+    private final HashTagRepositoryDsl hashTagRepositoryDsl;
     private Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
     public List<HashTagDto> getHashTagList(){
 
         try{
-            List<HashTag> result = hashTagRepository.findAll();
+            /*List<HashTag> result = hashTagRepository.findAll();
 
             List<HashTagDto> dtos = result.stream()
                     .map(data -> new HashTagDto(data.getHash_id(), data.getHashName()))
                     .collect(Collectors.toList());
 
-            return dtos;
+            return dtos;*/
+
+            List<HashTagDto> result = hashTagRepositoryDsl.getHashTagList();
+
+            return result;
+
         }catch (JpaSystemException jpaSystemException){
             logger.error("JPA error : ", jpaSystemException);
             throw new CustomException(HttpStatus.INTERNAL_SERVER_ERROR, CustomErrorCode.UNKNOWN_ERROR, "서버 에러가 발생하였습니다.");

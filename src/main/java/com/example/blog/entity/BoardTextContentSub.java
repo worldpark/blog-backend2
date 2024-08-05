@@ -19,7 +19,7 @@ import org.hibernate.annotations.Subselect;
                                             " AND B.content_type = 'text') THEN A.board_content END AS preview_content" +
             " FROM board_content A" +
             " WHERE A.content_type = 'text'" +
-            " GROUP BY A.board_id")
+            " GROUP BY A.board_id, preview_content")
 @Data
 @NoArgsConstructor
 public class BoardTextContentSub {

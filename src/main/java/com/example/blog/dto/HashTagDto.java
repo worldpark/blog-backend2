@@ -11,4 +11,5 @@ public class HashTagDto {
 
     private final Long hashId;
     private final String hashLabel;
+    private final Long boardCount;
 }
