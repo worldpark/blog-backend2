@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG">
+    <Properties>
+        <Property name="logPath">C:\blog\logs</Property>
+        <Property name="logPattern">[%-5level] %d{yyyy-MM-dd HH:mm:ss} [%t] %c{1} - %msg%n</Property>
+    </Properties>
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${logPattern}"/>
+        </Console>
+
+        <RollingFile
+                name="infoFile"
+                append="true"
+                fileName="${logPath}/info.log"
+                filePattern="${logPath}/info_%d{yyyy-MM-dd}.%i.log.gz">
+            <PatternLayout pattern="${logPattern}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="5MB"/>
+                <TimeBasedTriggeringPolicy interval = "5" modulate = "true"/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile
+                name="errorFile"
+                append="true"
+                fileName="${logPath}/error.log"
+                filePattern="${logPath}/error_%d{yyyy-MM-dd}.%i.log.gz">
+            <PatternLayout pattern="${logPattern}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="5MB"/>
+                <TimeBasedTriggeringPolicy interval = "5" modulate = "true"/>
+            </Policies>
+        </RollingFile>
+
+
+    </Appenders>
+    <Loggers>
+        <Root level="info" additivity="false">
+            <AppenderRef ref="console" level="info"/>
+            <AppenderRef ref="infoFile" level="info"/>
+            <AppenderRef ref="errorFile" level="error"/>
+        </Root>
+
+        <Logger name="com.example.blog" level="info" additivity="false">
+            <AppenderRef ref="console" level="info"/>
+            <AppenderRef ref="infoFile" level="info"/>
+            <AppenderRef ref="errorFile" level="error"/>
+        </Logger>
+    </Loggers>
+</Configuration>

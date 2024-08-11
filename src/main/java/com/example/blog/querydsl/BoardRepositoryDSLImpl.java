@@ -126,7 +126,7 @@ public class BoardRepositoryDSLImpl implements BoardRepositoryDsl{
     }
 
     private BooleanExpression hashTagEq(String hashTagName){
-        if(hashTagName == null || hashTagName == ""){
+        if(hashTagName == null || hashTagName.equals("")){
             return null;
         }
 

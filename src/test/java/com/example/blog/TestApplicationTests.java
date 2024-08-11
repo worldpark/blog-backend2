@@ -1,10 +1,7 @@
 package com.example.blog;
 
 import com.example.blog.config.AesUtil;
-import com.example.blog.dto.BoardContentDto;
-import com.example.blog.dto.UserDto;
 import com.example.blog.entity.Board;
-import com.example.blog.entity.BoardAndHash;
 import com.example.blog.entity.User;
 import com.example.blog.querydsl.BoardRepositoryDsl;
 import com.example.blog.repository.BoardRepository;
@@ -16,8 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest

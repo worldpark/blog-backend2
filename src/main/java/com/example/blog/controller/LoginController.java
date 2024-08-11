@@ -2,6 +2,11 @@ package com.example.blog.controller;
 
 import com.example.blog.dto.ResponseDto;
 import com.example.blog.exception.ErrorDto;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Hidden
 public class LoginController {
 
     @GetMapping("/login/fail")
@@ -20,7 +26,7 @@ public class LoginController {
                 .body(ErrorDto.builder()
                         .code(errorCode)
                         .message(errorMessage)
-                        .detail("")
+                        .detail(errorMessage)
                         .build());
 
     }

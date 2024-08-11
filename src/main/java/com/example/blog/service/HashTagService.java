@@ -35,14 +35,6 @@ public class HashTagService {
     public List<HashTagDto> getHashTagList(){
 
         try{
-            /*List<HashTag> result = hashTagRepository.findAll();
-
-            List<HashTagDto> dtos = result.stream()
-                    .map(data -> new HashTagDto(data.getHash_id(), data.getHashName()))
-                    .collect(Collectors.toList());
-
-            return dtos;*/
-
             List<HashTagDto> result = hashTagRepositoryDsl.getHashTagList();
 
             return result;
