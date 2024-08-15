@@ -163,7 +163,7 @@ public class BoardService {
                 if (os.contains("win")) {
                     uploadFileService.uploadFile(file, "C:\\blogImage\\", boardId.toString());
                 } else {
-                    uploadFileService.uploadFile(file, "/Users/kimjr/Documents/blogImage/", boardId.toString());
+                    uploadFileService.uploadFile(file, "/blog/blogImage/", boardId.toString());
                 }
             }
 

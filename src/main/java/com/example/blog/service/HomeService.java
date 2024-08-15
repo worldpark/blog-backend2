@@ -1,5 +1,6 @@
 package com.example.blog.service;
 
+import com.example.blog.dto.UserAuthDto;
 import com.example.blog.exception.CustomErrorCode;
 import com.example.blog.exception.CustomException;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ public class HomeService {
 
     private final Logger logger = LoggerFactory.getLogger(HomeService.class);
 
-    public HashMap<String, Object> sessionCheck(Principal principal){
+    public UserAuthDto sessionCheck(Principal principal){
 
         try{
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -37,11 +38,12 @@ public class HomeService {
                 auths.add(authority.getAuthority());
             }
 
-            HashMap<String, Object> response = new HashMap<>();
-            response.put("userId", userId);
-            response.put("auths", auths);
+            UserAuthDto userAuthDto = new UserAuthDto(
+                    userId,
+                    auths
+            );
 
-            return response;
+            return userAuthDto;
         }catch (NullPointerException nullException){
             throw new CustomException(HttpStatus.OK, CustomErrorCode.INVALID_SESSION, "비 유효 로그인 세션");
         }catch (Exception exception){

@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="DEBUG">
     <Properties>
-        <Property name="logPath">C:\blog\logs</Property>
+        <if condition='System.getProperty("os.name").toLowerCase().contains("win")'>
+            <then>
+                <Property name="logPath">C:\blog\logs</Property>
+            </then>
+            <else>
+                <Property name="logPath">/blog/logs</Property>
+            </else>
+        </if>
+
         <Property name="logPattern">[%-5level] %d{yyyy-MM-dd HH:mm:ss} [%t] %c{1} - %msg%n</Property>
     </Properties>
     <Appenders>

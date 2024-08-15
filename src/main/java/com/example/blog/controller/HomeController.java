@@ -1,6 +1,7 @@
 package com.example.blog.controller;
 
 import com.example.blog.dto.ResponseDto;
+import com.example.blog.dto.UserAuthDto;
 import com.example.blog.exception.CustomErrorCode;
 import com.example.blog.exception.CustomException;
 import com.example.blog.exception.ErrorDto;
@@ -46,7 +47,7 @@ public class HomeController {
 
     @Operation(summary = "권한 체크", description = "권한 체크")
     @PostMapping("/check-session")
-    public HashMap<String, Object> authenticateUser(Principal principal){
+    public UserAuthDto authenticateUser(Principal principal){
 
         return homeService.sessionCheck(principal);
     }
