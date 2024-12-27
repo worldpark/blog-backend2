@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/", "/login/**", "/check-session", "/getHashTagList", "/boardImage/**"
                                 , "/loginSuccess", "/error/**", "/anonymous/resource/**", "/board/getBoardList", "/board/insertComment"
-                                , "/board/getComment", "/board/getBoardContent", "/board/deleteComment", "/**").permitAll()
+                                , "/board/getComment", "/board/getBoardContent", "/board/deleteComment", "/swagger-ui/**", "/api-docs/**").permitAll()
                         .anyRequest().hasRole("ADMIN")
                 )
                 .authenticationProvider(customAuthenticationProvider())
